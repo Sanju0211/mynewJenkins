@@ -1,25 +1,15 @@
 pipeline {
       agent any
       stages {
-            stage('Init') {
+            stage('Checkout') {
                   steps {
-                        echo 'Hi, this is Anshul from LevelUp360'
-                        echo 'We are Starting the Testing'
+                        git branch: 'develop', url: 'https://github.com/Sanju0211/mynewJenkins.git'
                   }
             }
-            stage('Build') {
+            stage('Pull to Folder') {
                   steps {
-                        echo 'Building Sample Maven Project'
-                  }
-            }
-            stage('Deploy') {
-                  steps {
-                        echo "Deploying in Staging Area"
-                  }
-            }
-            stage('Deploy Production') {
-                  steps {
-                        echo "Deploying in Production Area"
+                        sh 'mkdir -p folder'
+                        sh 'cp -r * folder'
                   }
             }
       }
